@@ -1,0 +1,12 @@
+.leaflet-container {
+  margin-top: 65px;
+  height: 80vh;
+  width: 100%;
+  background: #0ab3e1 !important;
+}
+
+.navbar {
+  box-shadow: 3px 3px 5px #0ab3e1;
+  opacity: 0.8;
+  font-family: "KoHo", sans-serif;
+}
