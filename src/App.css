@@ -10,3 +10,13 @@
   opacity: 0.8;
   font-family: "KoHo", sans-serif;
 }
+
+.background {
+  background-image: url("/src/IMG/background.png");
+  background-color: #e8c0d2;
+ }
+
+ .text {
+   text-align: center;
+   color: #4ea5e8;
+ }
