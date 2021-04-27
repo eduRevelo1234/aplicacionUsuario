@@ -14,10 +14,6 @@ const TablaFilaMensaje = ({seqNumber,lqi,datosMensaje,date}) => {
                     " "+fecha.getHours()+
                     ":"+fecha.getMinutes()+
                     ":"+fecha.getSeconds());
-        console.log(datef);
-        // var fechaT = new Date (date);
-        //console.log(fechaT);
-        //setFecha(fechaT);
     }, [])
 
     return (

@@ -44,6 +44,15 @@ const ImageForm =({setUpdateTable,updateTable,diagrama, setDiagrama, createData,
 
 
     useEffect(() => {
+        console.log(diagrama);
+        setForm({
+            ...form,
+            plano: diagrama,
+        });
+        console.log(form);
+    }, [setDiagrama])
+
+    useEffect(() => {
         if(dataToEdit){
             console.log(form.idDiagrma);
             setForm(dataToEdit);
@@ -67,14 +76,15 @@ const ImageForm =({setUpdateTable,updateTable,diagrama, setDiagrama, createData,
         
         
 
-        setImageBase64(base64);
-        setSelectedFile(file);
-        setDiagrama(base64);
-        console.log(diagrama);
+         setImageBase64(base64);
+         setSelectedFile(file);
+         setDiagrama(base64);
+         console.log(diagrama);
         setForm({
             ...form,
             plano: diagrama,
         });
+        console.log(form);
     }
     
     const nameSelectedHandler = async event => {
@@ -90,7 +100,7 @@ const ImageForm =({setUpdateTable,updateTable,diagrama, setDiagrama, createData,
 
     const fileUploadHandler = (e) => {
         e.preventDefault();
-        
+        console.log(form);
         if(!form.nombre){
             alert("Datos Incompletos");
             return;
@@ -98,19 +108,24 @@ const ImageForm =({setUpdateTable,updateTable,diagrama, setDiagrama, createData,
        //  console.log(form);
        setIsStopped(false);
        
-        if(form.idDiagrma=== null){
-            console.log("Create");
-            createData(form);
-        } else {
-            console.log("Update");
-            updateData(form);
-        }
-        handleReset();
-        if(updateTable){
-            setUpdateTable(false);
-        }else{
-            setUpdateTable(true);
-        }
+        setTimeout(() => {
+            if(form.idDiagrma=== null){
+                console.log("Create");
+                createData(form);
+            } else {
+                console.log("Update");
+                updateData(form);
+            }
+            handleReset();
+            if(updateTable){
+                setUpdateTable(false);
+            }else{
+                setUpdateTable(true);
+            }
+        }, 2000);
+
+
+        
        
        setTimeout(() => {
         setIsStopped(true);

@@ -25,8 +25,8 @@ import Lottie from "react-lottie";
 import Mensaje from "./Components/Mensajes";
 
 var bounds = [
-  [250, -300],
-  [-150, 500],
+  [400, 0],
+  [0, 800],
 ];
 
 const defaultOptions = {
@@ -73,12 +73,12 @@ const App = () => {
           }
         }  
       } else if(el.lqi === 2){
-          for( let i=0; i < 10; i++ ){
-            for( let j=0 ; j < 5; j++){
+          for( let i=0; i < 7; i++ ){
+            for( let j=0 ; j < 7; j++){
               let data = {
                 coordinates: [
                   x - i,
-                  y + j,
+                  y - j,
                 ],
               }
               dataPoints.push(data);
@@ -186,8 +186,8 @@ const App = () => {
                               <ImageOverlay
                                 url={diagramaSelected.plano.replace(/['"]+/g, '')}
                                 bounds={[
-                                  [250, -300],
-                                  [-150, 500],
+                                  [400, 0],
+                                  [0, 800],
                                 ]}
                               />
                             </Map>

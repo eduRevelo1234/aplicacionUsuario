@@ -44,6 +44,7 @@ const CrudDiagrama = () => {
     }, [updateTable])
 
     const createData = (form) =>{
+        
         let data = JSON.stringify(form.plano);
         
         console.log(data);
