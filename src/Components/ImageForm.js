@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Lottie from "react-lottie";
 import uploading from "../Assets/Lottie/uploading.json";
 
+
 const initialForm = {
     idDiagrma: null,
     nombre: "",
@@ -54,7 +55,9 @@ const ImageForm =({setUpdateTable,updateTable,diagrama, setDiagrama, createData,
 
     useEffect(() => {
         if(dataToEdit){
+            
             console.log(form.idDiagrma);
+            
             setForm(dataToEdit);
             
         }

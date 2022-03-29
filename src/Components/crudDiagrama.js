@@ -25,12 +25,16 @@ const CrudDiagrama = () => {
     let api = helpHttp();
     let url = "https://localhost:44387/api/Diagrama";
 
-
+    useEffect(() => {
+        if(dataToEdit){
+            alert("El id del diagrama seleccionado es: "+dataToEdit.idDiagrma);
+        }
+        
+    }, [dataToEdit])
     useEffect(() => {
         setLoading(true);
         helpHttp().get(url).then((res) => {
             if(!res.err){
-                
                 setDiagramas(res);
                 setError(null);
             }else{
@@ -38,26 +42,20 @@ const CrudDiagrama = () => {
                 setError(res);
             }
             setLoading(false);
-
         });
         
     }, [updateTable])
 
     const createData = (form) =>{
-        
         let data = JSON.stringify(form.plano);
-        
         console.log(data);
         let endpoint = `${url}?nombre= ${form.nombre}`;
-
         let options ={
             body: data.replace(/['"]+/g, ''),
             headers: {'content-type': 'text/json'}
         };
-        
         console.log(options);
         if(options.body === null){
-
         }else {
             api.post(endpoint,options).then(res=>{
                 console.log(res);
@@ -68,36 +66,25 @@ const CrudDiagrama = () => {
                 }
             });
         }
-        
-
-        
     };
-    const updateData = (form) =>{
 
+
+    const updateData = (form) =>{
         let data;
         if(isNewFile){
             data = JSON.stringify(form.plano);
         }
-
         else {
              data = form.plano
         }
-        
         console.log(data);
-
         let endpoint = `${url}/${form.idDiagrma}?nombre=${form.nombre}`;
-        
         console.log(endpoint);
-
         let options ={
             body: data,
             headers: {'content-type': 'text/json'}
         };
-
-       console.log(options.body);
-
        if(options.body === null){
-
         }else{
             api.put(endpoint,options).then(res=>{
                 console.log(res);
@@ -117,7 +104,6 @@ const CrudDiagrama = () => {
             `¿Estas seguro de eliminar el diagrma con el id'${id}'`
             );
         setTimeout(() => {
-            
             if(isDelete){
                 let endpoint = `${url}/${id}`;
                 console.log(endpoint);
@@ -138,9 +124,6 @@ const CrudDiagrama = () => {
                         setError(res);
                     }
                 });
-    
-                // la variable new data guarda todos los elementos de diagramas menos el que tiene el id que se va eliminar
-                
             }else {
                 return;
             } 
@@ -154,10 +137,23 @@ const CrudDiagrama = () => {
     return (
         <div>
             <article className = "grid-1-2">
-                <ImageForm updateTable={updateTable} setUpdateTable={setUpdateTable} diagrama={diagrama} setDiagrama={setDiagrama} createData={createData} updateData={updateData} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit} setIsNewFile={setIsNewFile}/>
+                <ImageForm 
+                    updateTable={updateTable} 
+                    setUpdateTable={setUpdateTable} 
+                    diagrama={diagrama} 
+                    setDiagrama={setDiagrama} 
+                    createData={createData} 
+                    updateData={updateData} 
+                    dataToEdit={dataToEdit} 
+                    setDataToEdit={setDataToEdit} 
+                    setIsNewFile={setIsNewFile}/>
                 {loading && <Loader></Loader>}
                 {error &&  <Message msg={`Error ${error.status}: ${error.status.text}`} bgColor="#dc3545"></Message>}
-                {diagramas && <TablaDiagrama diagramas={diagramas}  setDataToEdit={setDataToEdit} deleteData={deleteData} setIsUpdate={setIsUpdate}></TablaDiagrama>}
+                {diagramas && <TablaDiagrama 
+                                diagramas={diagramas}  
+                                setDataToEdit={setDataToEdit} 
+                                deleteData={deleteData} 
+                                setIsUpdate={setIsUpdate}/>}
             </article>
         </div>
     )

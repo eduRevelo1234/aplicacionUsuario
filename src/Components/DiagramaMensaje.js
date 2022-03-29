@@ -3,6 +3,10 @@ import { helpHttp } from '../helpers/helpHttp';
 import Loader from './Loader';
 import Message from "./Message";
 import TablaDiagramaMensaje from './TablaDiagramaMensaje';
+import leyenda from '../IMG/leyenda.JPG';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const DiagramaMensaje = ({diagramaSelected,setDiagramaSelected, mensajes, setMensajes}) => {
 
@@ -32,7 +36,6 @@ const DiagramaMensaje = ({diagramaSelected,setDiagramaSelected, mensajes, setMen
     }, []);
     
     useEffect(() => {
-        
         if(diagramaSelected){
             let endpoint = `${urlM}/${diagramaSelected.idDiagrma}`;
                 helpHttp().get(endpoint).then((res) => {
@@ -47,9 +50,7 @@ const DiagramaMensaje = ({diagramaSelected,setDiagramaSelected, mensajes, setMen
         }else{
             console.log("No se ha selecinado ningun diagrama");
         }
-        
         console.log(mensajes);
-
     }, [diagramaSelected]);
 
 
@@ -60,6 +61,21 @@ const DiagramaMensaje = ({diagramaSelected,setDiagramaSelected, mensajes, setMen
             {loading && <Loader></Loader>}
             {error &&  <Message msg={`Error ${error.status}: ${error.status.text}`} bgColor="#dc3545"></Message>}
             {diagramas && <TablaDiagramaMensaje diagramas={diagramas} setDiagramaSelected={setDiagramaSelected} />}
+            <Container>
+                <Row>
+                    <Col></Col>
+                    <Col></Col>
+                    <Col></Col>
+                    <Col>Leyenda</Col>
+                </Row>
+                <Row>
+                    <Col></Col>
+                    <Col></Col>
+                    <Col></Col>
+                    <Col> <img src={leyenda} alt="Leyenda" /></Col>
+                </Row>
+            </Container>
+           
         </div>
     )
 }

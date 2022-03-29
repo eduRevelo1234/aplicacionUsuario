@@ -55,7 +55,6 @@ const App = () => {
     console.log(cont);
     
     mensajes.map((el) => {
-
     var cadena = el.datosMensaje.split("/");  
     let x = parseInt(cadena[1]);
     let y = parseInt(cadena[2]);
@@ -73,8 +72,8 @@ const App = () => {
           }
         }  
       } else if(el.lqi === 2){
-          for( let i=0; i < 7; i++ ){
-            for( let j=0 ; j < 7; j++){
+          for( let i=0; i < 1; i++ ){
+            for( let j=0 ; j <15; j++){
               let data = {
                 coordinates: [
                   x - i,
@@ -145,7 +144,7 @@ const App = () => {
           <Route path="/" exact>
             <Container>
               <Row>
-                <h1 className="text"> Aplicación para la obtención de la zona de cobertura de la red SigFox en el interio de edificaciones</h1>
+                <h1 className="text"> Aplicación para la obtención de la zona de cobertura de la red SigFox en el interior de edificaciones</h1>
               </Row>
               <Row>
                 <Col md >

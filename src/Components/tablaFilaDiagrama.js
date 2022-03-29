@@ -20,14 +20,15 @@ const TablaFilaDiagrama = ({el, setDataToEdit,deleteData}) => {
     const [isStopped, setIsStopped] = useState(true);
 
 
-    let {plano,nombre,idDigrma} = el;
-    
+    let {plano,nombre,idDiagrma} = el;
     
 
     const edit = (el) => {
         
         setDataToEdit(el);
         console.log(el.plano);
+        console.log(el.nombre)
+        console.log(el.idDigrma);
     }
 
     const deleteDiagrama = () => {
